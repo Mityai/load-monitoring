@@ -1,5 +1,8 @@
 import logging
+
 import util.process
+
+from slurm.queue import SlurmQueue
 
 
 class SlurmClient(object):
