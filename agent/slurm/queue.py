@@ -17,7 +17,7 @@ class SlurmQueue(object):
   @classmethod
   def from_squeue_output(cls, squeue_output):
     squeue_output_lines = squeue_output.split('\n')
-    header = squeue_output_line[0].split()
+    header = squeue_output_lines[0].split()
 
     jobs = list()
     for job_desc_line in squeue_output_lines[1:]:
