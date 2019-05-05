@@ -5,7 +5,7 @@ class MetricHolder(dict):
     return self
 
   def merge(self, other):
-    for name, metric in other.iteritems():
+    for name, metric in other.items():
       assert name not in self
       self[name] = metric
     return self
