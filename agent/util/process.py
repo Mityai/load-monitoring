@@ -18,4 +18,4 @@ def run_command_wait(cmd, timeout=None):
 
 def get_command_output(cmd, timeout=None):
   process = run_command_wait(cmd, timeout)
-  return map(str, process.communicate())
+  return map(lambda out: str(out.decode('ascii')), process.communicate())

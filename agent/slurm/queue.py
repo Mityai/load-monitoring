@@ -24,7 +24,7 @@ class SlurmQueue(object):
       job_desc = job_desc_line.split()
 
       job = SlurmJob()
-      for field in FIELDS_TO_EXTRACT:
+      for field in self.FIELDS_TO_EXTRACT:
         try:
           job.set_field(field, job_desc[header.index(field)])
         except ValueError as e:

@@ -7,4 +7,4 @@ class SlurmJob(object):
   }
 
   def set_field(self, field, value):
-    setattr(self, NAME_TO_FIELD[field], value)
+    setattr(self, self.NAME_TO_FIELD[field], value)
