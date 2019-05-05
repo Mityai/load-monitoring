@@ -17,7 +17,7 @@ class Metric(object):
     return self
 
   def graphite_format(self, prefix='', pickle=False):
-    ts = int(self.timestamp.timestamp())
+    ts = int(self.date.timestamp())
 
     name = self.name
     if prefix:
