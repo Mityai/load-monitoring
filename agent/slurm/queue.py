@@ -17,7 +17,7 @@ class SlurmQueue(object):
     self.date = date or datetime.datetime.now()
 
   @classmethod
-  def from_squeue_output(cls, squeue_output):
+  def from_squeue_output(cls, squeue_output, date=None):
     squeue_output_lines = squeue_output.split('\n')
     header = squeue_output_lines[0].split()
 
@@ -36,7 +36,7 @@ class SlurmQueue(object):
 
       jobs.append(job)
 
-    return cls(jobs)
+    return cls(jobs, date)
 
   def filter(self, key, value):
     return list(filter(lambda job: getattr(job, key) == value, self.jobs))
