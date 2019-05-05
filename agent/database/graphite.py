@@ -1,3 +1,4 @@
+import logging
 import pickle
 import socket
 import struct
@@ -27,8 +28,10 @@ class GraphiteClient(DatabaseClient):
     self.sock.sendall(header)
     self.sock.sendall(payload)
 
-  def push_metrics(self, metrics):
+  def push_metrics(self, metrics, prefix=''):
     tuples = []
     for metric in metrics:
-      tuples.append(metric.graphite_format(pickle=True))
+      tuples.append(metric.graphite_format(prefix=prefix, pickle=True))
+
+    logging.debug('Send metrics:\n{}'.format('\n'.join(tuples)))
     self.push_pickle(tuples)

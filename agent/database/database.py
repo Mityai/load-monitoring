@@ -1,7 +1,7 @@
 class DatabaseClient(object):
   @staticmethod
   def db_type():
-    raise NotImplemented('Specify database name')
+    raise NotImplementedError('Specify database name')
 
-  def push_metrics(self, metrics):
-    raise NotImplemented
+  def push_metrics(self, metrics, prefix=''):
+    raise NotImplementedError

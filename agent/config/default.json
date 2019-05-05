@@ -1,9 +1,13 @@
 {
+  "cluster": "test",
   "frequency": 5,
   "database": {
     "type": "graphite",
     "address": "18.224.17.191",
     "port": 2004
+  },
+  "workload_manager": {
+    "type": "slurm"
   }
 }
 

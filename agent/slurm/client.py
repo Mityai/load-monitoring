@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 import util.process
@@ -12,5 +13,6 @@ class SlurmClient(object):
     if partition is not None:
       cmd += ['-p', partition]
 
+    date = datetime.datetime.now()
     out, _ = util.process.get_command_output(cmd, timeout=timeout)
-    return SlurmQueue.from_squeue_output(out)
+    return SlurmQueue.from_squeue_output(out, date)

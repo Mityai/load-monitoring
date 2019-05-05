@@ -14,11 +14,18 @@ class Metric(object):
 
     self.value = value
     self.timestamp = timestamp or datetime.datetime.now()
+    return self
 
-  def graphite_format(self, pickle=False):
+  def graphite_format(self, prefix='', pickle=False):
     ts = int(self.timestamp.timestamp())
+
+    name = self.name
+    if prefix:
+      name = '{prefix}.{name}'.format(prefix=prefix, name=name)
+
     if pickle:
-      return (self.name, (ts, self.value))
-    return '{name} {value} {timestamp}'.format(name=self.name,
+      return (name, (ts, self.value))
+
+    return '{name} {value} {timestamp}'.format(name=name,
                                                value=self.value,
                                                timestamp=ts)

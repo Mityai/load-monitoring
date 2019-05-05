@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from slurm.job import SlurmJob
@@ -11,8 +12,9 @@ class SlurmQueue(object):
     'USER',
   ]
 
-  def __init__(self, jobs_queue):
-    self.queue = jobs_queue
+  def __init__(self, jobs_queue, date=None):
+    self.jobs = jobs_queue
+    self.date = date or datetime.datetime.now()
 
   @classmethod
   def from_squeue_output(cls, squeue_output):
@@ -35,3 +37,6 @@ class SlurmQueue(object):
       jobs.append(job)
 
     return cls(jobs)
+
+  def filter(self, key, value):
+    return list(filter(lambda job: getattr(job, key) == value, self.jobs))
