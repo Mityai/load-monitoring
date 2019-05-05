@@ -4,7 +4,7 @@ import time
 
 
 class Agent(object):
-  def __init__(self, config):
+  def __init__(self, config={}):
     self.frequency = config.get('frequency', 5)
     self.db_client = database.get_client(config.get('db_type', 'graphite'))
 

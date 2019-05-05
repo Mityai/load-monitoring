@@ -1,4 +1,4 @@
-from database import DatabaseClient
+from database.database import DatabaseClient
 
 class GraphiteClient(DatabaseClient):
   def __init__(self):
@@ -10,4 +10,3 @@ class GraphiteClient(DatabaseClient):
 
   def push_metrics(self, metrics):
     print('metrics len {}'.format(len(metrics)))
-    pass
