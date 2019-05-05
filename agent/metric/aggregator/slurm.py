@@ -32,5 +32,5 @@ class SlurmAggregator(Aggregator):
 
     metric_holder = MetricHolder()
     for queue, size in queue_sizes.items():
-      metric_holder.add(Metric('{queue}.jobs_num'.format(queue=queue).consume(size, queue.date))
+      metric_holder.add(Metric('{queue}.jobs_num'.format(queue=queue)).consume(size, queue.date))
     return metric_holder
