@@ -8,12 +8,12 @@ class Metric(object):
 
     self.name = name
 
-  def consume(self, value, timestamp=None):
+  def consume(self, value, date=None):
     assert isinstance(value, numbers.Number)
-    assert timestamp is None or isinstance(timestamp, datetime.datetime)
+    assert date is None or isinstance(date, datetime.datetime)
 
     self.value = value
-    self.timestamp = timestamp or datetime.datetime.now()
+    self.date = date or datetime.datetime.now()
     return self
 
   def graphite_format(self, prefix='', pickle=False):
