@@ -21,7 +21,7 @@ class GraphiteClient(DatabaseClient):
   def db_type():
     return 'graphite'
 
-  def push(self, tuples):
+  def push_pickle(self, tuples):
     payload = pickle.dumps(tuples, protocol=2)
     header = struct.pack("!L", len(payload))
     self.sock.sendall(header)
@@ -31,4 +31,4 @@ class GraphiteClient(DatabaseClient):
     tuples = []
     for metric in metrics:
       tuples.append(metric.graphite_format(pickle=True))
-    self.push(tuples)
+    self.push_pickle(tuples)

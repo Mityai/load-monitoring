@@ -6,13 +6,12 @@ from metric.metric import Metric
 
 
 class Agent(object):
-  def __init__(self, config={}):
+  def __init__(self, config):
     self.frequency = config.get('frequency', 5)
 
     database_config = config.get('database', {})
     db_type = database.get_client_type(database_config.get('type', 'graphite'))
-    self.db_client = db_type(database_config.get('address', '18.224.17.191'),
-                             database_config.get('port', 2004))
+    self.db_client = db_type(database_config['address'], database_config['port'])
 
   def run(self):
     while True:

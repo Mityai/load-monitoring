@@ -1,0 +1,9 @@
+{
+  "frequency": 5,
+  "database": {
+    "type": "graphite",
+    "address": "18.224.17.191",
+    "port": 2004
+  }
+}
+
