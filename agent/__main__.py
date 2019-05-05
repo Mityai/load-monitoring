@@ -1,9 +1,9 @@
-from slurm.slurm import SlurmClient
+from agent import Agent
 
 
 def main():
-  client = SlurmClient()
-  print(len(client.queue().queue))
+  agent = Agent()
+  agent.run()
 
 
 if __name__ == '__main__':
