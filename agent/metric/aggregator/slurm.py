@@ -2,6 +2,7 @@ import datetime
 
 from metric.aggregator.aggregator import Aggregator
 from metric.holder import MetricHolder
+from metric.metric import Metric
 from slurm.client import SlurmClient
 
 
