@@ -33,5 +33,5 @@ class GraphiteClient(DatabaseClient):
     for metric in metrics:
       tuples.append(metric.graphite_format(prefix=prefix, pickle=True))
 
-    logging.debug('Send metrics:\n{}'.format('\n'.join(tuples)))
+    logging.debug('Send metrics:\n{}'.format('\n'.join(map(lambda t: str(t), tuples))))
     self.push_pickle(tuples)
