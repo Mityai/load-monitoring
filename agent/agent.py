@@ -8,7 +8,11 @@ from metric.metric import Metric
 class Agent(object):
   def __init__(self, config={}):
     self.frequency = config.get('frequency', 5)
-    self.db_client = database.get_client(config.get('db_type', 'graphite'))
+
+    database_config = config.get('database', {})
+    db_type = database.get_client_type(database_config.get('type', 'graphite'))
+    self.db_client = db_type(database_config.get('address', '18.224.17.191'),
+                             database_config.get('port', 2004))
 
   def run(self):
     while True:
@@ -23,11 +27,9 @@ class Agent(object):
     self.push_to_db(metrics)
 
   def aggregate_stats(self):
-    m1 = Metric('a.b.c')
-    m1.set_value(1488)
-    m2 = Metric('a.b.d')
-    m2.set_value(1337)
-    return [m1, m2]
+    m1 = Metric('local.random.diceroll')
+    m1.consume(1488)
+    return [m1]
 
   def push_to_db(self, metrics):
     self.db_client.push_metrics(metrics)
