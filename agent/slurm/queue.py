@@ -22,9 +22,11 @@ class SlurmQueue(object):
     jobs = list()
     for job_desc_line in squeue_output_lines[1:]:
       job_desc = job_desc_line.split()
+      if not job_desc:
+        continue
 
       job = SlurmJob()
-      for field in self.FIELDS_TO_EXTRACT:
+      for field in cls.FIELDS_TO_EXTRACT:
         try:
           job.set_field(field, job_desc[header.index(field)])
         except ValueError as e:
