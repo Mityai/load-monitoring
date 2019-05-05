@@ -2,6 +2,8 @@ import database
 import logging
 import time
 
+from metric.metric import Metric
+
 
 class Agent(object):
   def __init__(self, config={}):
@@ -21,7 +23,11 @@ class Agent(object):
     self.push_to_db(metrics)
 
   def aggregate_stats(self):
-    return [1, 2, 3]
+    m1 = Metric('a.b.c')
+    m1.set_value(1488)
+    m2 = Metric('a.b.d')
+    m2.set_value(1337)
+    return [m1, m2]
 
   def push_to_db(self, metrics):
     self.db_client.push_metrics(metrics)
