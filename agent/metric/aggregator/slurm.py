@@ -7,7 +7,7 @@ from slurm.client import SlurmClient
 
 
 class SlurmAggregator(Aggregator):
-  def __init__(self):
+  def __init__(self, config):
     self.client = SlurmClient()
 
   @staticmethod

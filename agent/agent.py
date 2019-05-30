@@ -14,11 +14,10 @@ class Agent(object):
     self.frequency = self.config.get('frequency', 5)
 
     database_config = self.config['database']
-    db_type = database.get_client_type(database_config['type'])
-    self.db_client = db_type(database_config['address'], database_config['port'])
+    self.db_client = database.get_client(database_config['type'], database_config)
 
     manager_config = self.config['workload_manager']
-    self.metrics_aggregator = metric.aggregator.get_aggregator(manager_config['type'])
+    self.metrics_aggregator = metric.aggregator.get_aggregator(manager_config['type'], manager_config)
 
   def run(self):
     while True:

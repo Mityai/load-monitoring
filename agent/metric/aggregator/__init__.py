@@ -4,5 +4,5 @@ AGGREGATORS = {
   SlurmAggregator.type(): SlurmAggregator,
 }
 
-def get_aggregator(manager_type):
-  return AGGREGATORS[manager_type]()
+def get_aggregator(manager_type, config):
+  return AGGREGATORS[manager_type](config)

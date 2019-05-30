@@ -8,9 +8,9 @@ from metric.metric import Metric
 
 
 class GraphiteClient(DatabaseClient):
-  def __init__(self, address, port):
-    self.address = address
-    self.port = port
+  def __init__(self, config):
+    self.address = config['address']
+    self.port = config['port']
 
     self.sock = socket.socket()
     try:
